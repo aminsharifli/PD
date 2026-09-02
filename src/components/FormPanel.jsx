@@ -26,10 +26,6 @@ function Card({ icon: Icon, title, children }) {
   )
 }
 
-/**
- * Sol panel: tüm giriş alanları, kanıt yükleyici, birincil indirme butonu.
- * Tamamen kontrollü — tüm state <App /> içinde, geri çağrılarla akıyor.
- */
 export default function FormPanel({
   form,
   setField,

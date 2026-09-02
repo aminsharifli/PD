@@ -1,17 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
   color-scheme: dark;
 }
-
 html,
 body,
 #root {
   height: 100%;
 }
-
 body {
   margin: 0;
   background-color: #0a0f1a;
@@ -20,8 +17,6 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
-
-/* Thin dark scrollbars for long editing sessions */
 * {
   scrollbar-width: thin;
   scrollbar-color: #1e293b transparent;
@@ -37,8 +32,6 @@ body {
 *::-webkit-scrollbar-track {
   background: transparent;
 }
-
-/* Keep manual line breaks in the rendered narrative */
 .doc-narrative {
   white-space: pre-wrap;
   word-break: break-word;

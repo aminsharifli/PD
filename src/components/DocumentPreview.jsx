@@ -4,8 +4,6 @@ import { ORG, STATUS_STYLES } from '../constants'
 
 const GOLD = '#c9a24b'
 
-/* ---------- küçük sunum bileşenleri ---------- */
-
 function InfoCell({ label, value }) {
   return (
     <div className="border border-slate-700/70 bg-slate-900/40 px-3 py-2">
@@ -48,13 +46,6 @@ function SignatureLine({ label, name }) {
   )
 }
 
-/* ---------- ana belge ---------- */
-
-/**
- * Sağ paneldeki resmî belge. Yalnızca bu düğüm html2canvas'a verilir; bu yüzden
- * tamamen bağımsızdır (sabit genişlik, kendi arka planı, dinamik değerler için
- * satır içi renkler). Türkçe karakterler yüklü Inter fontu ile doğru render edilir.
- */
 const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, ref) {
   const charges = form.charges
     .split('\n')
@@ -69,17 +60,17 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
       style={{ width: 820, backgroundColor: '#0f172a', fontFamily: 'Inter, system-ui, sans-serif' }}
       className="relative overflow-hidden text-slate-100"
     >
-      {/* üst vurgu şeritleri */}
+      {}
       <div className="absolute inset-x-0 top-0 h-1.5" style={{ backgroundColor: '#1e3a8a' }} />
       <div className="absolute inset-x-0 h-[3px]" style={{ top: 6, backgroundColor: GOLD }} />
 
-      {/* soluk arka plan filigranı */}
+      {}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <RiceBadge style={{ width: 540, height: 371, opacity: 0.05 }} />
       </div>
 
       <div className="relative z-10 p-10">
-        {/* ---------- BAŞLIK ---------- */}
+        {}
         <div
           className="flex items-start justify-between gap-6 border-b-2 pb-5"
           style={{ borderColor: GOLD }}
@@ -122,7 +113,7 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
           </div>
         </div>
 
-        {/* ---------- MEMUR VE ŞÜPHELİ ---------- */}
+        {}
         <Divider>Memur ve Şüpheli Bilgileri</Divider>
         <div className="grid grid-cols-3 gap-2">
           <InfoCell label="Raporlayan Memur" value={form.officerName} />
@@ -134,7 +125,7 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
           <InfoCell label="Durum" value={form.status} />
         </div>
 
-        {/* ---------- BÖLÜM BAŞLIĞI ---------- */}
+        {}
         {form.sectionTitle ? (
           <div
             className="mt-6 border-l-4 px-4 py-2"
@@ -150,13 +141,13 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
           </div>
         ) : null}
 
-        {/* ---------- DETAYLI OLAY ÖZETİ ---------- */}
+        {}
         <Divider>Detaylı Olay Özeti</Divider>
         <div className="doc-narrative min-h-[120px] border border-slate-700/70 bg-slate-900/40 p-4 text-[13px] leading-7 text-slate-200">
           {form.narrative || 'Olay özeti girilmedi.'}
         </div>
 
-        {/* ---------- SUÇLAMALAR ---------- */}
+        {}
         <Divider>Suçlamalar ve İhlaller</Divider>
         {charges.length ? (
           <ol className="space-y-1.5">
@@ -176,7 +167,7 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
           <p className="text-[13px] italic text-slate-500">Suçlama belirtilmedi.</p>
         )}
 
-        {/* ---------- KANIT GALERİSİ ---------- */}
+        {}
         <Divider>Kanıt Galerisi</Divider>
         {evidence.length ? (
           <div className="grid grid-cols-2 gap-4">
@@ -207,7 +198,7 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
           <p className="text-[13px] italic text-slate-500">Bu dosyaya kanıt eklenmedi.</p>
         )}
 
-        {/* ---------- ALT BİLGİ ---------- */}
+        {}
         <div className="mt-10 border-t-2 pt-6" style={{ borderColor: GOLD }}>
           <div className="grid grid-cols-2 gap-10">
             <SignatureLine label="Raporlayan Memur İmzası" name={form.officerName} />

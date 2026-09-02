@@ -26,7 +26,7 @@ export default function App() {
   }, [])
 
   const [form, setForm] = useState(initial)
-  const [evidence, setEvidence] = useState([]) // { id, src, caption, name }
+  const [evidence, setEvidence] = useState([])
   const [busy, setBusy] = useState(false)
   const previewRef = useRef(null)
 
@@ -65,7 +65,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0a0f1a]">
-      {/* ---------- üst çubuk ---------- */}
+      {}
       <header className="sticky top-0 z-30 border-b border-slate-800 bg-[#0a0f1a]/90 backdrop-blur">
         <div className="mx-auto flex max-w-[1600px] items-center justify-between gap-4 px-4 py-3">
           <div className="flex items-center gap-3">
@@ -89,7 +89,7 @@ export default function App() {
         </div>
       </header>
 
-      {/* ---------- iki panelli çalışma alanı ---------- */}
+      {}
       <main className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 p-4 lg:grid-cols-[minmax(0,440px)_minmax(0,1fr)] lg:p-6">
         <FormPanel
           form={form}
