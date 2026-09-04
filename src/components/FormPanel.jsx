@@ -3,7 +3,9 @@ import {
   AlignLeft,
   Camera,
   Download,
+  Save,
   FileText,
+  FilePlus2,
   Hash,
   Loader2,
   RefreshCw,
@@ -35,21 +37,36 @@ export default function FormPanel({
   updateCaption,
   removeEvidence,
   onDownload,
+  onSave,
+  onNewFile,
   busy,
+  saving,
+  clearAfterSave,
+  setClearAfterSave,
+  isEditing,
 }) {
   const fileRef = useRef(null)
   const [dragOver, setDragOver] = useState(false)
 
   return (
     <div className="flex flex-col gap-4">
-      <button
-        onClick={onDownload}
-        disabled={busy}
-        className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c9a24b] px-4 py-3 text-sm font-bold uppercase tracking-[0.12em] text-[#0a0f1a] shadow-lg shadow-[#c9a24b]/10 transition hover:bg-[#dbb463] disabled:cursor-not-allowed disabled:opacity-60"
-      >
-        {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
-        {busy ? 'Hazırlanıyor…' : 'BELGEYİ PNG OLARAK İNDİR'}
+      <button onClick={onNewFile} disabled={busy || saving} className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-4 py-3 text-sm font-bold uppercase tracking-[0.1em] text-slate-200 transition hover:border-[#c9a24b]/60 hover:bg-slate-800 hover:text-white disabled:cursor-not-allowed disabled:opacity-60">
+        <FilePlus2 className="h-4 w-4 text-[#c9a24b]" /> Yeni Dosya
       </button>
+      <div className="grid gap-2 sm:grid-cols-2">
+        <button onClick={onDownload} disabled={busy || saving} className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#c9a24b] px-4 py-3 text-sm font-bold uppercase tracking-[0.1em] text-[#0a0f1a] shadow-lg shadow-[#c9a24b]/10 transition hover:bg-[#dbb463] disabled:cursor-not-allowed disabled:opacity-60">
+          {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : <Download className="h-4 w-4" />}
+          {busy ? 'Hazırlanıyor…' : 'PNG İNDİR & KAYDET'}
+        </button>
+        <button onClick={onSave} disabled={busy || saving} className="inline-flex items-center justify-center gap-2 rounded-lg border border-sky-500/50 bg-sky-500/10 px-4 py-3 text-sm font-bold uppercase tracking-[0.1em] text-sky-200 transition hover:bg-sky-500/20 disabled:cursor-not-allowed disabled:opacity-60">
+          {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
+          {saving ? 'Kaydediliyor…' : isEditing ? 'Değişiklikleri Kaydet' : 'Sisteme Kaydet'}
+        </button>
+      </div>
+      <label className="-mt-1 flex cursor-pointer items-center gap-2 text-xs text-slate-400">
+        <input type="checkbox" checked={clearAfterSave} onChange={(event) => setClearAfterSave(event.target.checked)} className="h-4 w-4 rounded border-slate-600 bg-slate-900 text-[#c9a24b] focus:ring-[#c9a24b]/30" />
+        Kaydedince formu temizle ve yeni dosya aç
+      </label>
 
       <Card icon={FileText} title="Belge Türü & Durum">
         <SelectField

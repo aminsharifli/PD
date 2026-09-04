@@ -46,6 +46,26 @@ function SignatureLine({ label, name }) {
   )
 }
 
+function ApprovalSignature({ approved }) {
+  return (
+    <div>
+      <div className="flex h-8 items-end">
+        {approved && (
+          <span
+            className="rotate-[-7deg] border-2 px-2 py-1 text-[11px] font-black uppercase tracking-[0.12em]"
+            style={{ color: '#34d399', borderColor: '#34d399' }}
+          >
+            Onaylandı
+          </span>
+        )}
+      </div>
+      <div className="border-t border-slate-500 pt-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">
+        Amir Onayı
+      </div>
+    </div>
+  )
+}
+
 const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, ref) {
   const charges = form.charges
     .split('\n')
@@ -202,7 +222,7 @@ const DocumentPreview = forwardRef(function DocumentPreview({ form, evidence }, 
         <div className="mt-10 border-t-2 pt-6" style={{ borderColor: GOLD }}>
           <div className="grid grid-cols-2 gap-10">
             <SignatureLine label="Raporlayan Memur İmzası" name={form.officerName} />
-            <SignatureLine label="Amir Onayı" name="" />
+            <ApprovalSignature approved={form.status !== 'ONAY BEKLİYOR'} />
           </div>
 
           <div className="mt-6 flex items-center justify-between gap-4">
